@@ -1,0 +1,19 @@
+name: Code Climate Test Reporter
+description: Reports test coverage data to CodeClimate
+
+branding:
+  icon: activity
+  color: red
+
+inputs:
+  command:
+    description: The commands given to the test reporter
+    required: true
+  test-reporter-id:
+    description: The test reporter id
+    required: false
+
+runs:
+  using: node12
+  pre: pre.js
+  main: main.js
