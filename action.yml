@@ -1,5 +1,5 @@
-name: Code Climate Test Reporter
-description: Reports test coverage data to CodeClimate
+name: Code Climate Test Reporter Base
+description: Installs and runs the CodeClimate Test Reporter tool
 
 branding:
   icon: activity
@@ -9,6 +9,9 @@ inputs:
   command:
     description: The commands given to the test reporter
     required: true
+  version:
+    description: The version of the tool to use (defaults to the latest version)
+    required: false
 
 runs:
   using: node12

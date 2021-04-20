@@ -7,20 +7,20 @@ volumes:
 
 services:
   lib:
-    image: icalia-actions/cc-test-reporter:development
+    image: icalia-actions/cc-test-reporter-base:development
     build:
       context: .
       dockerfile: Dockerfile
       target: development
       args:
-        APP_PATH: ${PWD:-/icalia-actions/cc-test-reporter}
+        APP_PATH: ${PWD:-/icalia-actions/cc-test-reporter-base}
         DEVELOPER_UID: ${UID:-1000}
         DEVELOPER_USERNAME: ${USER:-you}
-    working_dir: ${PWD:-/icalia-actions/cc-test-reporter}
-    entrypoint: ${PWD:-/icalia-actions/cc-test-reporter}/bin/dev-entrypoint
+    working_dir: ${PWD:-/icalia-actions/cc-test-reporter-base}
+    entrypoint: ${PWD:-/icalia-actions/cc-test-reporter-base}/bin/dev-entrypoint
     volumes:
-      - .:${PWD:-/icalia-actions/cc-test-reporter}
-      - node_modules:${PWD:-/icalia-actions/cc-test-reporter}/node_modules
+      - .:${PWD:-/icalia-actions/cc-test-reporter-base}
+      - node_modules:${PWD:-/icalia-actions/cc-test-reporter-base}/node_modules
       - vscode_extensions:/home/${USER:-you}/.vscode-server/extensions
       - vscode_insiders_extensions:/home/${USER:-you}/.vscode-server-insiders/extensions
     
@@ -42,6 +42,6 @@ services:
     command: vscode-wait # Éste comando está definido en `bin/dev-entrypoint`
 
     environment:
-      RUNNER_TEMP: ${PWD:-/icalia-actions/cc-test-reporter}/tmp
-      RUNNER_TOOL_CACHE: ${PWD:-/icalia-actions/cc-test-reporter}/cache
+      RUNNER_TEMP: ${PWD:-/icalia-actions/cc-test-reporter-base}/tmp
+      RUNNER_TOOL_CACHE: ${PWD:-/icalia-actions/cc-test-reporter-base}/cache
       GIT_EDITOR: code

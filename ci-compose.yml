@@ -7,22 +7,22 @@ volumes:
 
 services:
   tests: &lib
-    image: icalia-actions/cc-test-reporter:testing-latest
+    image: icalia-actions/cc-test-reporter-base:testing-latest
     build: &lib_build
       target: testing
       context: .
       args:
-        APP_PATH: ${PWD:-/icalia-actions/cc-test-reporter}
+        APP_PATH: ${PWD:-/icalia-actions/cc-test-reporter-base}
         DEVELOPER_UID: ${UID:-1000}
         DEVELOPER_USERNAME: ${USER:-you}
     command: yarn test
     volumes:
-      - .:${PWD:-/icalia-actions/cc-test-reporter}
-      - node_modules:${PWD:-/icalia-actions/cc-test-reporter}/node_modules
+      - .:${PWD:-/icalia-actions/cc-test-reporter-base}
+      - node_modules:${PWD:-/icalia-actions/cc-test-reporter-base}/node_modules
 
   publisher:
     <<: *lib
-    image: icalia-actions/cc-test-reporter:latest
+    image: icalia-actions/cc-test-reporter-base:latest
     build:
       <<: *lib_build
       target: release

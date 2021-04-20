@@ -1,4 +1,4 @@
-# CodeClimate Test Reporter Github Action
+# CodeClimate Test Reporter Base Github Action
 
 Reports test coverage data to CodeClimate
 
@@ -6,7 +6,7 @@ Reports test coverage data to CodeClimate
 
 ```yaml
       - name: Code Climate Test Reporter
-        uses: icalia-actions/cc-test-reporter@v0.0.1
+        uses: icalia-actions/cc-test-reporter-base@v0.0.1
         with:
           command: before-build
 ```

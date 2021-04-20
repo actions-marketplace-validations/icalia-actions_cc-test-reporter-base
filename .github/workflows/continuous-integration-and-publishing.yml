@@ -54,8 +54,8 @@ jobs:
           platforms: linux/amd64
 
           tags: |
-            icalia-actions/cc-test-reporter:testing-${{ github.sha }}
-            icalia-actions/cc-test-reporter:testing-latest
+            icalia-actions/cc-test-reporter-base:testing-${{ github.sha }}
+            icalia-actions/cc-test-reporter-base:testing-latest
           build-args: |
             APP_PATH=${{env.PWD}}
             DEVELOPER_UID=${{env.UID}}
@@ -112,8 +112,8 @@ jobs:
           platforms: linux/amd64
 
           tags: |
-            icalia-actions/cc-test-reporter:testing-${{ github.sha }}
-            icalia-actions/cc-test-reporter:testing-latest
+            icalia-actions/cc-test-reporter-base:testing-${{ github.sha }}
+            icalia-actions/cc-test-reporter-base:testing-latest
           build-args: |
             APP_PATH=${{env.PWD}}
             DEVELOPER_UID=${{env.UID}}
@@ -158,8 +158,8 @@ jobs:
           load: true
           platforms: linux/amd64
           tags: |
-            icalia-actions/cc-test-reporter:${{ github.sha }}
-            icalia-actions/cc-test-reporter:latest
+            icalia-actions/cc-test-reporter-base:${{ github.sha }}
+            icalia-actions/cc-test-reporter-base:latest
           build-args: |
             APP_PATH=${{env.PWD}}
             DEVELOPER_UID=${{env.UID}}
@@ -181,7 +181,7 @@ jobs:
 
       - name: Check if dist is up to date
         run: |
-          docker run --rm icalia-actions/cc-test-reporter:latest cat dist/index.js > dist/index.js
+          docker run --rm icalia-actions/cc-test-reporter-base:latest cat dist/index.js > dist/index.js
           git diff --quiet --exit-code || echo "::error ::dist/index.js is not up to date - perform a build and commit"
           git diff --quiet --exit-code
 
@@ -222,8 +222,8 @@ jobs:
           platforms: linux/amd64
 
           tags: |
-            icalia-actions/cc-test-reporter:${{ github.sha }}
-            icalia-actions/cc-test-reporter:latest
+            icalia-actions/cc-test-reporter-base:${{ github.sha }}
+            icalia-actions/cc-test-reporter-base:latest
           build-args: |
             APP_PATH=${{env.PWD}}
             DEVELOPER_UID=${{env.UID}}

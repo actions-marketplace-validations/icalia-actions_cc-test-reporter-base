@@ -1,7 +1,7 @@
 {
-  "name": "@icalialabs/cc-test-reporter",
+  "name": "@icalialabs/cc-test-reporter-base",
   "version": "0.0.1",
-  "description": "Configures DNS records in a given AWS Route 53 domain",
+  "description": "Base commands to run the Code Climate Test Reporter on Github Actions",
   "main": "lib/main.js",
   "scripts": {
     "debug-pre": "yarn run build && node -r dotenv/config pre.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/icalia-actions/cc-test-reporter.git"
+    "url": "git+https://github.com/icalia-actions/cc-test-reporter-base.git"
   },
   "keywords": [
     "actions",

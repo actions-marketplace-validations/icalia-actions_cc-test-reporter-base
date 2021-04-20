@@ -15,7 +15,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends git
 
 # Receive the APP_PATH argument:
-ARG APP_PATH=/icalia-actions/cc-test-reporter
+ARG APP_PATH=/icalia-actions/cc-test-reporter-base
 
 # Receive the developer user's UID and USER:
 ARG DEVELOPER_UID=1000
@@ -48,7 +48,7 @@ ENV PATH=${APP_PATH}/node_modules/.bin:$PATH
 FROM testing AS development
 
 # Receive the APP_PATH argument:
-ARG APP_PATH=/icalia-actions/cc-test-reporter
+ARG APP_PATH=/icalia-actions/cc-test-reporter-base
 
 # Receive the developer user's UID and USER:
 ARG DEVELOPER_UID=1000
@@ -103,7 +103,7 @@ RUN mkdir -p ~/.vscode-server/extensions ~/.vscode-server-insiders/extensions
 # Stage IV: Builder ============================================================
 FROM testing AS builder
 
-ARG APP_PATH=/icalia-actions/cc-test-reporter
+ARG APP_PATH=/icalia-actions/cc-test-reporter-base
 ARG DEVELOPER_UID=1000
 
 COPY --chown=${DEVELOPER_UID} . ${APP_PATH}/
@@ -113,6 +113,6 @@ RUN rm -rf .env .npmignore __test__ action.yml bin ci-compose.yml coverage src t
 
 # Stage V: Release =============================================================
 FROM runtime AS release
-ARG APP_PATH=/icalia-actions/cc-test-reporter
-COPY --from=builder --chown=node:node ${APP_PATH} /icalia-actions/cc-test-reporter
-WORKDIR /icalia-actions/cc-test-reporter
+ARG APP_PATH=/icalia-actions/cc-test-reporter-base
+COPY --from=builder --chown=node:node ${APP_PATH} /icalia-actions/cc-test-reporter-base
+WORKDIR /icalia-actions/cc-test-reporter-base
