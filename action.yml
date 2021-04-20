@@ -9,9 +9,6 @@ inputs:
   command:
     description: The commands given to the test reporter
     required: true
-  test-reporter-id:
-    description: The test reporter id
-    required: false
 
 runs:
   using: node12
