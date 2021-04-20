@@ -19,20 +19,22 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.main = exports.pre = void 0;
 const exec_1 = __nccwpck_require__(514);
 const core_1 = __nccwpck_require__(186);
+const environment_1 = __nccwpck_require__(309);
 const setup_1 = __nccwpck_require__(391);
 function pre() {
     return __awaiter(this, void 0, void 0, function* () {
         const reporterVersion = core_1.getInput("version") || setup_1.defaultVersion;
         yield setup_1.setupTestReporter(reporterVersion);
+        return 0;
     });
 }
 exports.pre = pre;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         yield pre();
-        const command = core_1.getInput("command");
-        yield exec_1.exec(`${setup_1.reporter} ${command}`);
-        core_1.info("did something");
+        const args = core_1.getInput("command").split(' ').map(arg => arg.trim());
+        const env = environment_1.normalizeEnv();
+        yield exec_1.exec(setup_1.reporter, args, { env });
         return 0;
     });
 }
@@ -47,19 +49,18 @@ exports.main = main;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.normalizeEnvironment = void 0;
-function normalizeEnvironment() {
+exports.normalizeEnv = void 0;
+function normalizeEnv() {
     var _a;
     const env = process.env;
-    env.GIT_COMMIT_SHA = env.GITHUB_SHA;
-    env.GIT_BRANCH =
-        env.GITHUB_HEAD_REF || ((_a = env.GITHUB_REF) === null || _a === void 0 ? void 0 : _a.replace(/^refs\/heads\//, ""));
-    env.CI_NAME = "Github Actions";
-    env.CI_BUILD_ID = env.GITHUB_RUN_ID;
-    env.CI_BUILD_URL = `https://github.com/${env.GITHUB_REPOSITORY}/runs/${env.GITHUB_RUN_ID}`;
+    env.GIT_COMMIT_SHA || (env.GIT_COMMIT_SHA = env.GITHUB_SHA);
+    env.GIT_BRANCH || (env.GIT_BRANCH = env.GITHUB_HEAD_REF || ((_a = env.GITHUB_REF) === null || _a === void 0 ? void 0 : _a.replace(/^refs\/heads\//, "")));
+    env.CI_NAME || (env.CI_NAME = "Github Actions");
+    env.CI_BUILD_ID || (env.CI_BUILD_ID = env.GITHUB_RUN_ID);
+    env.CI_BUILD_URL || (env.CI_BUILD_URL = `https://github.com/${env.GITHUB_REPOSITORY}/runs/${env.GITHUB_RUN_ID}`);
     return env;
 }
-exports.normalizeEnvironment = normalizeEnvironment;
+exports.normalizeEnv = normalizeEnv;
 //# sourceMappingURL=environment.js.map
 
 /***/ }),
