@@ -1,6 +1,6 @@
 {
   "name": "@icalialabs/cc-test-reporter-base",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Base commands to run the Code Climate Test Reporter on Github Actions",
   "main": "lib/main.js",
   "scripts": {
