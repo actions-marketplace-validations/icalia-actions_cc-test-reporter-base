@@ -12,8 +12,10 @@ export async function pre() {
 
 export async function main() {
   await pre();
-  const args = getInput("command").split(' ').map(arg => arg.trim());
-  const env = normalizeEnv() as { [ key: string ]: string }
+  const args = getInput("command")
+    .split(" ")
+    .map((arg) => arg.trim());
+  const env = normalizeEnv() as { [key: string]: string };
   await exec(reporter, args, { env });
   return 0;
 }

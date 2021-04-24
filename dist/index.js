@@ -32,7 +32,9 @@ exports.pre = pre;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         yield pre();
-        const args = core_1.getInput("command").split(' ').map(arg => arg.trim());
+        const args = core_1.getInput("command")
+            .split(" ")
+            .map((arg) => arg.trim());
         const env = environment_1.normalizeEnv();
         yield exec_1.exec(setup_1.reporter, args, { env });
         return 0;

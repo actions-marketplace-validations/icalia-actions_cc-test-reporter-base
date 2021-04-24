@@ -6,7 +6,7 @@
   "scripts": {
     "debug-pre": "yarn run build && node -r dotenv/config pre.js",
     "debug-main": "yarn run build && node -r dotenv/config main.js",
-    "build": "tsc && ncc build",
+    "build": "rm -rf lib && tsc && ncc build",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "test": "jest --coverage",
@@ -32,6 +32,9 @@
     }
   ],
   "license": "MIT",
+  "files": [
+    "lib/**/*"
+  ],
   "devDependencies": {
     "@actions/core": "^1.2.7",
     "@actions/exec": "^1.0.4",
