@@ -18,7 +18,7 @@ async function downloadTestReporter(version: string): Promise<string> {
 }
 
 export const reporter = "cc-test-reporter";
-export const defaultVersion = "0.10.0";
+export const defaultVersion = "0.10.3";
 
 export async function setupTestReporter(version: string): Promise<void> {
   let reporterPath = findTool(reporter, version);
